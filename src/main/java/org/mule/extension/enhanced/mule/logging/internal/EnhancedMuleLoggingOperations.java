@@ -30,24 +30,24 @@ public class EnhancedMuleLoggingOperations {
     @SuppressWarnings({"rawtypes", "unchecked"})
     @DisplayName("Log Map")
     public void logMap(@Optional @Config EnhancedMuleLoggingConfiguration cfg,
+                       ComponentLocation location,
                        @DisplayName("Log Level") @Optional(defaultValue = "INFO") LogLevel logLevel,
                        @DisplayName("Category") @Optional String category,
-                       @DisplayName("Category") @Optional String keyPrefix,
-                       ComponentLocation location,
+                       @DisplayName("Prefix") @Optional String keyPrefix,
                        @DisplayName("Include code location") @Optional(defaultValue = "true") boolean includeCodeLocation,
-                       Object map) {
+                       @DisplayName("Data Map") Map map) {
         Map<String, Object> flatMap = flatten(keyPrefix,map);
         try {
             final Logger logger = getLogger(cfg, category);
             if (includeCodeLocation && location != null) {
                 if (location.getRootContainerName() != null) {
-                    flatMap.put("location.rootContainerName", location.getRootContainerName());
+                    flatMap.put("code.location.rootContainerName", location.getRootContainerName());
                 }
                 if (location.getFileName() != null && location.getFileName().isPresent()) {
-                    flatMap.put("location.filename", location.getFileName().get());
+                    flatMap.put("code.location.filename", location.getFileName().get());
                 }
                 if (location.getLineInFile() != null && location.getLineInFile().isPresent()) {
-                    flatMap.put("location.line", location.getLineInFile().get());
+                    flatMap.put("code.location.line", location.getLineInFile().get());
                 }
             }
             final MapMessage message = new MapMessage(flatMap);

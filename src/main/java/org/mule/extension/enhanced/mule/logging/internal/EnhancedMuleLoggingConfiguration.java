@@ -3,6 +3,7 @@ package org.mule.extension.enhanced.mule.logging.internal;
 import org.mule.runtime.extension.api.annotation.Operations;
 import org.mule.runtime.extension.api.annotation.param.Optional;
 import org.mule.runtime.extension.api.annotation.param.Parameter;
+import org.mule.runtime.extension.api.annotation.param.display.DisplayName;
 
 /**
  * This class represents an extension configuration, values set in this class are commonly used across multiple
@@ -11,6 +12,7 @@ import org.mule.runtime.extension.api.annotation.param.Parameter;
 @Operations(EnhancedMuleLoggingOperations.class)
 //@ConnectionProviders(EnhancedMuleLoggingConnectionProvider.class)
 public class EnhancedMuleLoggingConfiguration {
+    @DisplayName("Default Category")
     @Parameter
     @Optional
     private String defaultCategory;

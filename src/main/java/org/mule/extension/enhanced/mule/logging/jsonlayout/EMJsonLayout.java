@@ -23,8 +23,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-@Plugin(name = "ELJsonLayout", category = "Core", elementType = "layout", printObject = true)
-public class ELJsonLayout extends AbstractStringLayout {
+@Plugin(name = "EMJsonLayout", category = "Core", elementType = "layout", printObject = true)
+public class EMJsonLayout extends AbstractStringLayout {
     public static final String RAWJSON_MARKER = "_$_rawjson_$_";
     public static final int RAWJSON_MARK_LEN = RAWJSON_MARKER.length();
     private static boolean prettyPrint;
@@ -40,15 +40,15 @@ public class ELJsonLayout extends AbstractStringLayout {
         getExtendedStackTraceAsStringAvailable = m != null;
     }
 
-    protected ELJsonLayout(Charset charset) {
+    protected EMJsonLayout(Charset charset) {
         super(charset);
     }
 
     @PluginFactory
-    public static ELJsonLayout createLayout(@PluginAttribute(value = "charset", defaultString = "UTF-8") Charset charset,
+    public static EMJsonLayout createLayout(@PluginAttribute(value = "charset", defaultString = "UTF-8") Charset charset,
                                             @PluginAttribute(value = "prettyPrint", defaultString = "false") boolean prettyPrint) {
-        ELJsonLayout.prettyPrint = prettyPrint;
-        return new ELJsonLayout(charset);
+        EMJsonLayout.prettyPrint = prettyPrint;
+        return new EMJsonLayout(charset);
     }
 
     @SuppressWarnings("unchecked")
