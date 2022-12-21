@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:enhanced-mule-logging="http://www.mulesoft.org/schema/mule/enhanced-mule-logging" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/enhanced-mule-logging http://www.mulesoft.org/schema/mule/enhanced-mule-logging/current/mule-enhanced-mule-logging.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="fb611510-f2a2-4e42-8099-362b70996938" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<enhanced-mule-logging:config name="Enhanced_Mule_Logging_Config" doc:name="Enhanced Mule Logging Config" doc:id="3bb6eb0a-ede8-43e7-8f1b-471840cb7f62" defaultCategory="foo" />
+	<flow name="testFlow" doc:id="75f55eb5-0d08-4a35-bfab-722e65dd9a12" >
+		<http:listener doc:name="Listener" doc:id="b6e2b2ec-546c-4cb3-8ded-2916064cc56a" config-ref="HTTP_Listener_config" path="/*"/>
+		<logger level="INFO" doc:name="Logger" doc:id="93bec1d9-86c2-4bfd-b74b-c73a85c06449" message="afdsfads"/>
+		<enhanced-mule-logging:log-map doc:name="Log Map" doc:id="75743126-bb91-4e76-a529-6edf16c316c4" map='#[{"foo":"bar","hello":{"world":"yay"}}]'>
+		</enhanced-mule-logging:log-map>
+		<enhanced-mule-logging:log-message doc:name="Log Message" doc:id="393bf5ed-a1da-4238-8472-225fe8918c62" message="blabla" config-ref="Enhanced_Mule_Logging_Config"/>
+	</flow>
+</mule>
